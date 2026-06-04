@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이슬기 | Data Analyst Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #5046E5;
+      --accent2: #7B73F0;
+      --text: #0d0d1a;
+      --muted: #6B7280;
+      --bg: #F7F8FF;
+      --card: #ffffff;
+      --border: #E5E7F0;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--bg); color: var(--text); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 64px;
+      background: rgba(5,5,20,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .nav-logo { color: #fff; font-weight: 800; font-size: 15px; text-decoration: none; letter-spacing: -0.3px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 500; text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-resume {
+      font-size: 12px; font-weight: 600; padding: 7px 18px;
+      background: var(--accent); color: #fff;
+      border-radius: 100px; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-resume:hover { background: var(--accent2); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: #050514;
+      display: flex; align-items: center;
+      padding: 64px 5% 0;
+      position: relative; overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute; top: -200px; left: -100px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(80,70,229,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-glow2 {
+      position: absolute; bottom: -150px; right: -50px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(123,115,240,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 760px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(80,70,229,0.5);
+      background: rgba(80,70,229,0.12);
+      color: #a89fff;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 6px 16px;
+      border-radius: 100px; margin-bottom: 32px;
+    }
+    .hero-badge::before { content: '●'; font-size: 7px; color: #7B73F0; }
+    .hero-name {
+      font-size: clamp(52px, 9vw, 88px);
+      font-weight: 800; color: #fff;
+      letter-spacing: -3px; line-height: 1.0;
+      margin-bottom: 16px;
+    }
+    .hero-name em { font-style: normal; color: var(--accent2); }
+    .hero-role {
+      font-size: clamp(16px, 2.5vw, 22px);
+      color: rgba(255,255,255,0.45);
+      font-weight: 400; margin-bottom: 24px; letter-spacing: -0.3px;
+    }
+    .hero-desc {
+      font-size: 16px; color: rgba(255,255,255,0.6);
+      line-height: 1.85; max-width: 480px; margin-bottom: 44px;
+    }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px; border-radius: 100px;
+      font-size: 14px; font-weight: 600;
+      text-decoration: none; transition: all 0.2s; font-family: inherit;
+      cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #3d33d4; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(80,70,229,0.4); }
+    .btn-ghost { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.12); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+    .hero-stats {
+      display: flex; gap: 40px; margin-top: 64px; padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-num { font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -1px; }
+    .stat-label { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+    /* SECTION WRAPPER */
+    .section-wrap { max-width: 900px; margin: 0 auto; padding: 88px 5%; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .section-title { font-size: clamp(28px, 4vw, 40px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.15; margin-bottom: 48px; }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border); max-width: 900px; margin: 0 auto; }
+
+    /* ABOUT */
+    .about-text { font-size: 16px; color: var(--muted); line-height: 1.9; max-width: 640px; margin-bottom: 40px; }
+    .strength-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .strength-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .strength-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(80,70,229,0.08); }
+    .s-icon { font-size: 22px; margin-bottom: 12px; }
+    .s-title { font-size: 14px; font-weight: 700; margin-bottom: 7px; }
+    .s-desc { font-size: 13px; color: var(--muted); line-height: 1.75; }
+
+    /* SKILLS */
+    .skill-group { margin-bottom: 24px; }
+    .skill-group-name { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      font-size: 13px; font-weight: 500; padding: 7px 14px;
+      border-radius: 8px; background: var(--card); border: 1px solid var(--border);
+    }
+    .chip.hl { background: rgba(80,70,229,0.07); border-color: rgba(80,70,229,0.25); color: var(--accent); font-weight: 600; }
+
+    /* PROJECTS */
+    .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .proj-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+    .proj-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(80,70,229,0.12); border-color: rgba(80,70,229,0.35); }
+    .proj-thumb {
+      height: 136px; display: flex; align-items: center; justify-content: center;
+      font-size: 36px; position: relative;
+    }
+    .proj-type {
+      position: absolute; top: 12px; right: 12px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+      padding: 4px 10px; border-radius: 100px;
+      background: rgba(255,255,255,0.25); color: rgba(0,0,0,0.5);
+    }
+    .proj-body { padding: 20px; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+    .proj-tag { font-size: 11px; font-weight: 600; background: rgba(80,70,229,0.08); color: var(--accent); padding: 3px 9px; border-radius: 100px; }
+    .proj-title { font-size: 15px; font-weight: 700; margin-bottom: 5px; line-height: 1.4; }
+    .proj-meta { font-size: 11px; color: var(--muted); margin-bottom: 10px; }
+    .proj-desc { font-size: 12.5px; color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
+    .proj-links { display: flex; gap: 8px; }
+    .proj-link {
+      font-size: 12px; font-weight: 600; padding: 7px 14px;
+      border-radius: 8px; text-decoration: none;
+      background: var(--bg); border: 1px solid var(--border);
+      color: var(--text); transition: all 0.2s;
+    }
+    .proj-link:hover { border-color: var(--accent); color: var(--accent); }
+    .proj-link.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .proj-link.primary:hover { background: #3d33d4; }
+
+    /* CONTACT */
+    .contact-box {
+      background: #050514;
+      border-radius: 20px; padding: 64px 48px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .contact-glow {
+      position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+      width: 400px; height: 300px;
+      background: radial-gradient(circle, rgba(80,70,229,0.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .contact-box h3 { font-size: 28px; font-weight: 800; color: #fff; margin-bottom: 12px; letter-spacing: -0.8px; position: relative; }
+    .contact-box p { color: rgba(255,255,255,0.5); margin-bottom: 36px; position: relative; }
+    .contact-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; position: relative; }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 32px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
+
+    /* FADE */
+    .fade { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade.in { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 640px) {
+      .strength-grid, .proj-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; }
+      .nav-links { display: none; }
+      .contact-box { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">seulgi525</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-resume" href="#contact">Resume ↓</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">Data Analyst Portfolio</div>
+    <h1 class="hero-name">이슬기<em>.</em></h1>
+    <p class="hero-role">Data Analyst</p>
+    <p class="hero-desc">데이터 수집부터 분석, 시각화, 서비스 구현까지<br>전 과정을 직접 수행하며 성장하고 있습니다.</p>
+    <div class="hero-btns">
+      <a href="https://github.com/seulgi525" class="btn btn-primary" target="_blank">GitHub →</a>
+      <a href="#projects" class="btn btn-ghost">프로젝트 보기</a>
+      <a href="mailto:sulegi525@naver.com" class="btn btn-ghost">Email</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Team Projects</div>
+      </div>
+      <div>
+        <div class="stat-num">1</div>
+        <div class="stat-label">Live Service</div>
+      </div>
+      <div>
+        <div class="stat-num">7+</div>
+        <div class="stat-label">Skills</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="section-wrap fade" id="about">
+  <p class="section-label">About</p>
+  <h2 class="section-title">데이터의 전 과정을<br>직접 경험합니다</h2>
+  <p class="about-text">크롤링으로 데이터를 직접 모으고, 분석해서 인사이트를 찾고, 서비스로 배포까지 해봤습니다. 분석이 결론에서 끝나지 않고 실제로 쓰이는 형태로 만들어지는 과정을 중요하게 생각합니다.</p>
+  <div class="strength-grid">
+    <div class="strength-card"><div class="s-icon">🔍</div><div class="s-title">데이터 수집 & 전처리</div><div class="s-desc">웹크롤링으로 직접 데이터를 수집하고, 분석 목적에 맞게 정제·구조화합니다. 여러 출처 데이터를 결합해 분석 테이블을 설계하는 과정을 중요하게 생각합니다.</div></div>
+    <div class="strength-card"><div class="s-icon">📊</div><div class="s-title">분석 & 시각화</div><div class="s-desc">수집한 데이터에서 의미 있는 패턴을 찾고, 차트와 대시보드로 전달합니다. 분석 결과보다 "왜 이런 결과가 나왔는가"를 먼저 생각합니다.</div></div>
+    <div class="strength-card"><div class="s-icon">💡</div><div class="s-title">비즈니스 인사이트 도출</div><div class="s-desc">숫자 뒤에 있는 이유를 찾고, 실제 서비스나 정책에 적용할 수 있는 제안으로 연결합니다.</div></div>
+    <div class="strength-card"><div class="s-icon">🚀</div><div class="s-title">서비스 구현</div><div class="s-desc">분석 결과를 Streamlit이나 Vercel 배포까지 연결합니다. 데이터 분석이 실제로 쓰이는 형태로 만들어지는 경험을 쌓고 있습니다.</div></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<div class="section-wrap fade" id="skills">
+  <p class="section-label">Skills</p>
+  <h2 class="section-title">사용 기술</h2>
+  <div class="skill-group">
+    <div class="skill-group-name">언어 & 분석</div>
+    <div class="skill-chips">
+      <span class="chip hl">Python</span><span class="chip hl">pandas</span><span class="chip hl">SQL</span>
+      <span class="chip">numpy</span><span class="chip">matplotlib</span><span class="chip">seaborn</span>
+    </div>
+  </div>
+  <div class="skill-group">
+    <div class="skill-group-name">데이터 수집</div>
+    <div class="skill-chips">
+      <span class="chip hl">Selenium</span><span class="chip hl">BeautifulSoup</span>
+      <span class="chip">웹크롤링</span><span class="chip">API 연동</span>
+    </div>
+  </div>
+  <div class="skill-group">
+    <div class="skill-group-name">텍스트 분석</div>
+    <div class="skill-chips">
+      <span class="chip hl">텍스트마이닝</span><span class="chip hl">감성분석</span>
+      <span class="chip">형태소 분석</span><span class="chip">사전 기반 분류</span>
+    </div>
+  </div>
+  <div class="skill-group">
+    <div class="skill-group-name">시각화 & 배포</div>
+    <div class="skill-chips">
+      <span class="chip">Power BI</span><span class="chip">Streamlit</span>
+      <span class="chip">Vercel</span><span class="chip">Git / GitHub</span><span class="chip">머신러닝 기초</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<div class="section-wrap fade" id="projects">
+  <p class="section-label">Projects</p>
+  <h2 class="section-title">프로젝트</h2>
+  <div class="proj-grid">
+
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#EEF0FF,#C8C4FF)">
+        📄<span class="proj-type">Team</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">#텍스트마이닝</span><span class="proj-tag">#감성분석</span><span class="proj-tag">#Streamlit</span></div>
+        <div class="proj-title">취업지원서비스 — 채용공고 × 기업리뷰 교차분석</div>
+        <div class="proj-meta">2026.04 ~ 05 · 팀 프로젝트</div>
+        <div class="proj-desc">잡플래닛 리뷰와 채용공고 데이터를 결합해 기업별 종합 점수를 산출하고, 구직자의 지원 판단을 돕는 분석 서비스를 구축했습니다.</div>
+        <div class="proj-links">
+          <a href="https://github.com/seulgi525" class="proj-link primary" target="_blank">GitHub</a>
+          <a href="#" class="proj-link">발표자료</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#E6F1FB,#9ECDE8)">
+        🗺️<span class="proj-type">Team · 공모전</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">#공공데이터</span><span class="proj-tag">#복합지수</span><span class="proj-tag">#공간시각화</span></div>
+        <div class="proj-title">서울시 생애주기별 사회적 고립 위험지역 분석</div>
+        <div class="proj-meta">2026.04 ~ 05 · 팀 프로젝트 · 서울시 빅데이터 공모전 출품</div>
+        <div class="proj-desc">서울 426개 행정동을 대상으로 청년·중장년·노년의 고립 취약 가능성을 복합위험지수로 수치화하고, 정책 우선순위 지역을 도출했습니다.</div>
+        <div class="proj-links">
+          <a href="https://github.com/seulgi525" class="proj-link primary" target="_blank">GitHub</a>
+          <a href="#" class="proj-link">발표자료</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#E6FBF3,#9EE8C8)">
+        🛒<span class="proj-type">Solo</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">#RFM분석</span><span class="proj-tag">#코호트분석</span><span class="proj-tag">#pandas</span></div>
+        <div class="proj-title">이커머스 고객 행동 분석 — RFM & 코호트</div>
+        <div class="proj-meta">2026.06 · 개인 프로젝트</div>
+        <div class="proj-desc">브라질 이커머스 Olist 데이터(93,000명)로 고객 세그먼테이션과 월별 재구매율을 분석했습니다. 재구매율 0.48%라는 수치에서 플랫폼 구조적 문제를 발견했습니다.</div>
+        <div class="proj-links">
+          <a href="https://github.com/seulgi525" class="proj-link primary" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#FFF5E6,#F5C580)">
+        🤖<span class="proj-type">Solo · Live</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">#웹크롤링</span><span class="proj-tag">#Selenium</span><span class="proj-tag">#Vercel배포</span></div>
+        <div class="proj-title">웹크롤링 서비스 — 오픈마켓 & SNS 데이터 수집 자동화</div>
+        <div class="proj-meta">2026.03 · 개인 프로젝트</div>
+        <div class="proj-desc">네이버쇼핑·쿠팡·G마켓·인스타그램 등 7개 플랫폼의 데이터를 자동 수집하는 서비스입니다. MySQL 연동 및 Vercel 배포까지 구현했습니다.</div>
+        <div class="proj-links">
+          <a href="https://github.com/seulgi525/crawling-site" class="proj-link primary" target="_blank">GitHub</a>
+          <a href="https://crawling-site.vercel.app" class="proj-link" target="_blank">라이브 데모</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<div class="section-wrap fade" id="contact">
+  <div class="contact-box">
+    <div class="contact-glow"></div>
+    <h3>함께 이야기해요</h3>
+    <p>데이터 분석, 프로젝트 협업 등 언제든지 연락주세요.</p>
+    <div class="contact-links">
+      <a href="mailto:sulegi525@naver.com" class="btn btn-primary">✉ sulegi525@naver.com</a>
+      <a href="https://github.com/seulgi525" class="btn btn-ghost" target="_blank">GitHub</a>
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 이슬기 · seulgi525</footer>
+
+<script>
+const io = new IntersectionObserver(
+  es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+  { threshold: 0.07 }
+);
+document.querySelectorAll('.fade').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
