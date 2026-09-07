@@ -39,13 +39,6 @@
 
 🔗 [GitHub Repository](https://github.com/seulgi525/seoul-social-isolation)
 
-### 3. 이커머스 고객 행동 분석 — RFM & 코호트
-"성장을 위해 어떤 고객을 집중 관리해야 하는가"를 확인하기 위해 브라질 Olist 데이터(고객 93,000명)로 RFM 세그먼테이션과 월별 코호트 분석을 수행했습니다. 재구매율 0.48%라는 수치에서 플랫폼의 구조적 문제를 진단하고, 세그먼트별 맞춤 전략 3가지를 제안했습니다.
-
-`Python` `RFM분석` `코호트분석` `Pandas` `matplotlib`
-
-🔗 [GitHub Repository](https://github.com/seulgi525/ecommerce-customer-analysis)
-
 ---
 
 ## 🛠 Skills
