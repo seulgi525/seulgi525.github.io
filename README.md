@@ -39,6 +39,21 @@
 
 🔗 [GitHub Repository](https://github.com/seulgi525/seoul-social-isolation)
 
+### 3. California Housing 주택가격 예측
+1990년 미국 인구조사 기반 공개 데이터로 지역 특성과 주택 중위가격의 관계를 분석했습니다. 파생변수를 만들어 검증하고 11개 회귀모형을 같은 분할 기준으로 비교한 뒤, GridSearchCV로 튜닝하고 SHAP으로 변수 영향력을 해석했습니다.
+
+`Python` `회귀분석` `GridSearchCV` `SHAP` `scikit-learn`
+
+🔗 [GitHub Repository](https://github.com/seulgi525/california-housing-price-prediction)
+
+---
+
+## 📚 교육과정 실습
+
+아이티윌 빅데이터 분석 과정에서 학습한 기법을 공개 데이터셋으로 실습한 기록입니다. 위 주요 프로젝트와는 성격이 다릅니다.
+
+[타이타닉 생존 예측](https://github.com/seulgi525/practice-titanic) · [Boston Housing 주택가격](https://github.com/seulgi525/practice-boston-housing) · [Diamonds 가격 예측](https://github.com/seulgi525/practice-diamonds-price) · [Insurance 청구비용](https://github.com/seulgi525/practice-insurance-cost) · [Apple Quality 품질 분류](https://github.com/seulgi525/practice-apple-quality) · [Mall Customers 고객 세분화](https://github.com/seulgi525/practice-mall-customers)
+
 ---
 
 ## 🛠 Skills
