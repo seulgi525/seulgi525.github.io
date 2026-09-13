@@ -39,7 +39,14 @@
 
 🔗 [GitHub Repository](https://github.com/seulgi525/seoul-social-isolation)
 
-### 3. California Housing 주택가격 예측
+### 3. 서울 지하철 이용 KPI 자동화
+매월 반복되는 집계와 보고서 갱신을 자동화한 데이터 파이프라인입니다. 서울 열린데이터광장의 지하철 승하차 데이터 25개월치를 수집·검증·집계해 데이터마트 5종을 만들고, Google Sheets API로 대시보드 8개 탭을 갱신합니다. 검증 모드와 반영 모드를 분리해 검증을 통과해야만 실제 데이터가 바뀌도록 설계했습니다.
+
+`Python` `pandas` `Google Sheets API` `데이터 파이프라인` `pytest`
+
+🔗 [GitHub Repository](https://github.com/seulgi525/subway-kpi-automation) · [라이브 대시보드](https://docs.google.com/spreadsheets/d/1NCvOkVP5J6M92yMxxWVBcjIRKJqIMLhcrtaLXoV1y0U/edit)
+
+### 4. California Housing 주택가격 예측
 1990년 미국 인구조사 기반 공개 데이터로 지역 특성과 주택 중위가격의 관계를 분석했습니다. 파생변수를 만들어 검증하고 11개 회귀모형을 같은 분할 기준으로 비교한 뒤, GridSearchCV로 튜닝하고 SHAP으로 변수 영향력을 해석했습니다.
 
 `Python` `회귀분석` `GridSearchCV` `SHAP` `scikit-learn`
