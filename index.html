@@ -325,6 +325,10 @@
     .btn-sm-primary:hover { background: var(--navy-mid); }
     .btn-sm-outline { border: 1.5px solid var(--border); color: var(--text-sub); }
     .btn-sm-outline:hover { border-color: var(--navy); color: var(--navy); }
+    .project-card.card-wide { grid-column: 1 / -1; flex-direction: row; }
+    .project-card.card-wide .project-visual { width: 240px; height: auto; min-height: 172px; flex-shrink: 0; }
+    .topic-groups { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem; }
+    .card-wide .topic-groups { flex-direction: row; flex-wrap: wrap; gap: 0.75rem 2.5rem; }
 
     /* SKILLS */
     #skills { background: var(--bg); }
@@ -384,6 +388,9 @@
     @media (max-width: 768px) {
       section { padding: 64px 0; }
       .projects-grid { grid-template-columns: 1fr; }
+      .project-card.card-wide { flex-direction: column; }
+      .project-card.card-wide .project-visual { width: auto; height: 172px; }
+      .card-wide .topic-groups { flex-direction: column; }
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
@@ -708,7 +715,44 @@
         </div>
       </div>
 
-      <!-- 2. 서울 고립 -->
+      <!-- 2. 장바구니 전환분석 -->
+      <div class="project-card">
+        <div class="project-visual" style="background: linear-gradient(140deg, #1e3a8a 0%, #3b5bdb 100%);">
+          <img src="images/cosmetics-cart/image.png" alt="관측 초기 구간 제외 진단 그래프" loading="lazy" style="width:100%; height:100%; object-fit:cover; object-position:top;">
+        </div>
+        <div class="project-body">
+          <div class="project-badges">
+            <span class="badge badge-team">Team · 2인</span>
+          </div>
+          <div class="project-title">화장품 쇼핑몰 장바구니 7일 전환 분석</div>
+          <div class="project-period">2026.09 (2주) · 팀 프로젝트 · 분류 모델링</div>
+          <div class="pj-section">
+            <div class="pj-label">문제 정의</div>
+            <div class="pj-text">장바구니에 담아도 모두 구매로 이어지지는 않습니다. 담는 시점에 알 수 있는 정보만으로 담은 그 상품의 7일 내 구매 여부를 얼마나 가를 수 있는지, 무엇이 가장 크게 기여하는지 확인했습니다.</div>
+          </div>
+          <div class="pj-section">
+            <div class="pj-label">분석 접근</div>
+            <div class="pj-text">행동 로그 874만 행을 고객 108,458명 단위로 바꾸고, 관측 초기 구간을 제외해 조회–구매 관계의 역전을 바로잡았습니다. 로지스틱 회귀로 계수·오즈비를 해석하고 트리 6종과 비교해 선형으로 충분한지 판정했습니다.</div>
+          </div>
+          <div class="project-outcome">
+            <div class="outcome-label">주요 성과</div>
+            <div class="outcome-text">ROC-AUC 0.584로 개별 판정은 불가, 상위 10% 선별 시 구매 비율 1.46배 · 기여 1위 '담은 그 상품 조회 횟수'(오즈비 2.06)</div>
+          </div>
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">pandas</span>
+            <span class="tech-tag">statsmodels</span>
+            <span class="tech-tag">scikit-learn</span>
+            <span class="tech-tag">로지스틱 회귀</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/seulgi525/cosmetics-cart-conversion" target="_blank" class="btn-sm btn-sm-primary">GitHub →</a>
+            <a href="https://github.com/seulgi525/cosmetics-cart-conversion/blob/main/docs/0928_이슬기_배지환_장바구니전환분석_최종보고서_2차피드백반영본_제출이후수정본.pdf" target="_blank" class="btn-sm btn-sm-outline">보고서 PDF →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 서울 고립 -->
       <div class="project-card">
         <div class="project-visual" style="background: linear-gradient(140deg, #0f4c75 0%, #1b6ca8 100%);">
           <img src="images/seoul-isolation/image.png" alt="서울시 고립위험 대시보드 스크린샷" loading="lazy" style="width:100%; height:100%; object-fit:cover; object-position:top;">
@@ -747,7 +791,7 @@
         </div>
       </div>
 
-      <!-- 3. 지하철 KPI 자동화 -->
+      <!-- 4. 지하철 KPI 자동화 -->
       <div class="project-card">
         <div class="project-visual" style="background: linear-gradient(140deg, #0f4c81 0%, #2a7fb8 100%);">
           <img src="images/subway-kpi/image.png" alt="서울 지하철 KPI 자동화 대시보드 스크린샷" loading="lazy" style="width:100%; height:100%; object-fit:cover; object-position:top;">
@@ -785,7 +829,7 @@
         </div>
       </div>
 
-      <!-- 4. California Housing -->
+      <!-- 5. California Housing -->
       <div class="project-card">
         <div class="project-visual" style="background: linear-gradient(140deg, #0f766e 0%, #0891b2 100%);">
           <svg viewBox="0 0 360 172" xmlns="http://www.w3.org/2000/svg">
@@ -829,7 +873,7 @@
         </div>
       </div>
 
-      <!-- 5. 크롤링 -->
+      <!-- 6. 크롤링 -->
       <div class="project-card">
         <div class="project-visual" style="background: linear-gradient(140deg, #334155 0%, #475569 100%);">
           <img src="images/crawling/image.png" alt="웹크롤링 서비스 화면 스크린샷" loading="lazy" style="width:100%; height:100%; object-fit:cover; object-position:top;">
@@ -867,8 +911,8 @@
         </div>
       </div>
 
-          <!-- 6. 교육과정 실습 기록 -->
-      <div class="project-card">
+      <!-- 7. 교육과정 실습 기록 -->
+      <div class="project-card card-wide">
         <div class="project-visual" style="background: linear-gradient(140deg, #475569 0%, #64748b 100%);">
           <svg viewBox="0 0 360 172" xmlns="http://www.w3.org/2000/svg">
             <rect x="42"  y="34" width="80" height="44" rx="5" fill="white" fill-opacity="0.16"/>
@@ -890,7 +934,7 @@
           </div>
           <div class="pj-section">
             <div class="pj-label">다룬 주제</div>
-            <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:0.5rem;">
+            <div class="topic-groups">
               <div>
                 <div style="font-size:0.75rem; font-weight:700; color:var(--text); margin-bottom:0.35rem;">회귀 · 예측</div>
                 <div class="tech-tags" style="margin-top:0;">
