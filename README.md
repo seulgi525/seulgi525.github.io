@@ -53,6 +53,13 @@
 
 🔗 [GitHub Repository](https://github.com/seulgi525/california-housing-price-prediction)
 
+### 5. 모바일 게임 A/B 테스트 — 첫 게이트를 30레벨 vs 40레벨 어디에 둘까
+퍼즐 게임 Cookie Cats에서 게이트(기다리거나 결제해야 다음 레벨로 넘어갈 수 있는 관문)를 30레벨에서 40레벨로 늦추면 유저가 더 오래 남는지, 9만 명 실험 데이터로 확인했습니다. 결과에 끼워 맞추지 않도록 판단 기준을 먼저 정한 뒤 분석했습니다. 7일 리텐션은 30레벨 그룹이 0.82%p 높았지만(p=0.0016), SRM(두 그룹 인원이 50:50으로 나뉘지 않은 문제, p=0.0086)을 발견해 미리 정한 기준대로 결론을 보류하고, 현행 30레벨 유지와 배정 로직 점검 후 재실험을 권고했습니다.
+
+`Python` `A/B 테스트` `가설검정` `부트스트랩` `pandas`
+
+🔗 [GitHub Repository](https://github.com/seulgi525/cookie-cats-ab-test-mobile-game-gate-ab-test)
+
 ---
 
 ## 📚 교육과정 실습
@@ -67,7 +74,7 @@
 
 | 분류 | 기술 |
 | --- | --- |
-| **Language & Analysis** | Python, SQL, Pandas, NumPy |
+| **Language & Analysis** | Python, SQL, Pandas, NumPy, A/B 테스트·가설검정 |
 | **Visualization & Service** | Streamlit, matplotlib, seaborn |
 | **Machine Learning** | 텍스트마이닝, 감성분석 |
 | **Data Collection** | Selenium, BeautifulSoup, API 연동 |
